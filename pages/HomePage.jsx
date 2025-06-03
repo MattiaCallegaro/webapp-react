@@ -9,7 +9,7 @@ const HomePage = () => {
     const [films, setFilms] = useState([])
 
     const FetchFilms = () => {
-        axios.get('http://localhost:5173/films').then((resp) => {
+        axios.get('http://127.0.0.1:3000/films').then((resp) => {
             setFilms(resp.data)
         }).catch((err) => {
             console.log(err)

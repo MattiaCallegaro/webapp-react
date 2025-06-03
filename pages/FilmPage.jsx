@@ -11,13 +11,13 @@ const FilmPage = () => {
     const [film, setFilm] = useState({});
 
     const FetchFilms = () => {
-        axios.get(`http://localhost:5173/films${id}`).then((resp) => {
+        axios.get(`http://127.0.0.1:3000/films${id}`).then((resp) => {
             setFilm(resp.data)
         }).catch((err) => {
             console.log(err)
         })
     };
-    useState(FetchFilms, []);
+    useEffect(FetchFilms, []);
 
     return (
         <>
@@ -38,11 +38,11 @@ const FilmPage = () => {
                         <h3>Community reviews</h3>
                     </div>
                 </div>
-                {film.reviews.map((review) => {
+                {film.reviews.map((review) => (
                     <div className="row gy-3" key={`rewiew-${review.id}`}>
                         <ReviewsCard review={review} />
                     </div>
-                })}
+                ))}
             </div>
         </>
     )
