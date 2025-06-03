@@ -1,16 +1,43 @@
 import React from 'react'
-import FilmCard from '../components/FilmCard'
-import ReviewsCard from '../components/ReviewsCard'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import ReviewsCard from '../components/ReviewsCard';
 
 const FilmPage = () => {
+
+    const FetchFilms = () => {
+        axios.get(`http://127.0.0.1:3000/api/films${id}`).then((resp) => {
+            setFilm(resp.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    };
+    useState(FetchFilms, []);
+
     return (
         <>
             <div className='row'>
-                <FilmCard />
+                <div className="col-12 col-md-6 col-lg-4">
+                    <img src={film.image} className='img-fluid' alt="Film" />
+                </div>
+                <div className="col-12 col-md-6 col-lg-8">
+                    <h1>{film.title}</h1>
+                    <h3>{film.director}</h3>
+                    <p>{film.text}</p>
+                </div>
             </div>
 
             <div className="row gy-4 my-4">
-                <ReviewsCard />
+                <div className="col-12">
+                    <div className="d-flex justify-content-between">
+                        <h3>Community reviews</h3>
+                    </div>
+                </div>
+                {film.reviews.map((review) => {
+                    <div className="row gy-3" key={`rewiew-${review.id}`}>
+                        <ReviewsCard review={review} />
+                    </div>
+                })}
             </div>
         </>
     )
