@@ -9,7 +9,7 @@ const HomePage = () => {
     const [films, setFilms] = useState([])
 
     const FetchFilms = () => {
-        axios.get('http://127.0.0.1:3000/films').then((resp) => {
+        axios.get('http://127.0.0.1:3000/api/films').then((resp) => {
             setFilms(resp.data)
         }).catch((err) => {
             console.log(err)
@@ -24,7 +24,7 @@ const HomePage = () => {
                 <i>The nerdest film community</i>
             </h2>
             <div className="row gy-4">
-                {films.map((film) => {
+                {films && films.map((film) => {
                     return <FilmCard film={film} key={`film-${film.id}`} />
                 })}
             </div>
