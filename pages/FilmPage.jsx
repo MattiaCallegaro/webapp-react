@@ -11,7 +11,7 @@ const FilmPage = () => {
     const [film, setFilm] = useState({});
 
     const FetchFilms = () => {
-        axios.get(`http://127.0.0.1:3000/api/films${id}`).then((resp) => {
+        axios.get(`http://127.0.0.1:3000/api/films/${id}`).then((resp) => {
             setFilm(resp.data)
         }).catch((err) => {
             console.log(err)
@@ -21,25 +21,29 @@ const FilmPage = () => {
 
     return (
         <>
-            <div className='row'>
-                <div className="col-12 col-md-6 col-lg-4">
-                    <img src={film.image} className='img-fluid' alt="Film" />
-                </div>
-                <div className="col-12 col-md-6 col-lg-8">
-                    <h1>{film.title}</h1>
-                    <h3>{film.director}</h3>
-                    <p>{film.text}</p>
+            <div className="row justify-content-center">
+                <div className="col-12 col-md-6 ">
+                    <div className="card ">
+                        <div className="card-image-top">
+                            <img src={film.image} alt={film.title} className='img-fluid' />
+                        </div>
+                        <div className="card-body">
+                            <h3 className='text-primary'>{film.title}</h3>
+                            <h4><em>{film.author}</em></h4>
+                            <p>{film.abstract}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div className="row gy-4 my-4">
+            <div className="row gy-4 my-5">
                 <div className="col-12">
-                    <div className="d-flex justify-content-between">
-                        <h3>Community reviews</h3>
+                    <div className="d-flex justify-content-center">
+                        <h3>Le recensioni della community</h3>
                     </div>
                 </div>
                 {film.reviews?.map((review) => (
-                    <div className="row gy-3" key={`rewiew-${review.id}`}>
+                    <div key={`review-${review.id}`}>
                         <ReviewsCard review={review} />
                     </div>
                 ))}
