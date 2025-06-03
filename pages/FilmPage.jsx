@@ -2,11 +2,16 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ReviewsCard from '../components/ReviewsCard';
+import axios from 'axios';
 
 const FilmPage = () => {
 
+    const { id } = useParams();
+
+    const [film, setFilm] = useState({});
+
     const FetchFilms = () => {
-        axios.get(`http://127.0.0.1:3000/api/films${id}`).then((resp) => {
+        axios.get(`http://localhost:5173/films${id}`).then((resp) => {
             setFilm(resp.data)
         }).catch((err) => {
             console.log(err)
