@@ -1,0 +1,25 @@
+import React from 'react'
+
+const ReviewsCard = () => {
+    const id = { movie_id, name, vote, text, created_at } = film
+
+    return (
+        <>
+            <div className="col-12">
+                <div className="d-flex justify-content-between">
+                    <h3>Community reviews</h3>
+                </div>
+            </div>
+            <div className="col-12">
+                <div className="card p-3">
+                    <p>{text}</p>
+                    <p>{vote}</p>
+                    <p>{name}</p>
+                    <p>{created_at}</p>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default ReviewsCard

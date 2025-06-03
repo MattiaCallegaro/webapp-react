@@ -1,7 +1,22 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import FilmCard from '../components/FilmCard'
+import { useState, useEffect } from 'react'
 
 const HomePage = () => {
+    //creo la variabile di stato film
+    const [films, setFilm] = useState([])
+
+    const FetchFilms = () => {
+        axios.get('http://127.0.0.1:3000/api/films').then((resp) => {
+            setFilm(resp.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    };
+    useState(FetchFilms, []);
+
     return (
         <>
             <h1 className='text-primary'>BoolFlix</h1>
@@ -9,83 +24,9 @@ const HomePage = () => {
                 <i>The nerdest film community</i>
             </h2>
             <div className="row gy-4">
-                <div className="col-12 col-md-6 col-lg-4">
-                    <div className="card">
-                        <div className="card-image-top">
-                            <img src="https://picsum.photos/500/300" className='img-fluid' alt="Film" />
-                        </div>
-                        <div className="card-body">
-                            <h3 className='text-primary'>Titolo</h3>
-                            <h4>
-                                <em>Autore</em>
-                            </h4>
-                            <p>Descizione</p>
-                            <Link className='btn btn-primary' to="films/1">Dettaglio film</Link>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className="col-12 col-md-6 col-lg-4">
-                    <div className="card">
-                        <div className="card-image-top">
-                            <img src="https://picsum.photos/500/300" className='img-fluid' alt="Film" />
-                        </div>
-                        <div className="card-body">
-                            <h3 className='text-primary'>Titolo</h3>
-                            <h4>
-                                <em>Autore</em>
-                            </h4>
-                            <p>Descizione</p>
-                            <Link className='btn btn-primary' to="films/2">Dettaglio film</Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-12 col-md-6 col-lg-4">
-                    <div className="card">
-                        <div className="card-image-top">
-                            <img src="https://picsum.photos/500/300" className='img-fluid' alt="Film" />
-                        </div>
-                        <div className="card-body">
-                            <h3 className='text-primary'>Titolo</h3>
-                            <h4>
-                                <em>Autore</em>
-                            </h4>
-                            <p>Descizione</p>
-                            <Link className='btn btn-primary' to="films/3">Dettaglio film</Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-12 col-md-6 col-lg-4">
-                    <div className="card">
-                        <div className="card-image-top">
-                            <img src="https://picsum.photos/500/300" className='img-fluid' alt="Film" />
-                        </div>
-                        <div className="card-body">
-                            <h3 className='text-primary'>Titolo</h3>
-                            <h4>
-                                <em>Autore</em>
-                            </h4>
-                            <p>Descizione</p>
-                            <Link className='btn btn-primary' to="films/4">Dettaglio film</Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-12 col-md-6 col-lg-4">
-                    <div className="card">
-                        <div className="card-image-top">
-                            <img src="https://picsum.photos/500/300" className='img-fluid' alt="Film" />
-                        </div>
-                        <div className="card-body">
-                            <h3 className='text-primary'>Titolo</h3>
-                            <h4>
-                                <em>Autore</em>
-                            </h4>
-                            <p>Descizione</p>
-                            <Link className='btn btn-primary' to="films/5">Dettaglio film</Link>
-                        </div>
-                    </div>
-                </div>
+                {films.map((film) => {
+                    return <FilmCard film={film} key={`film-${film.id}`} />
+                })}
             </div>
         </>
     )

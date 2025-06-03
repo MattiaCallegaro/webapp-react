@@ -8,7 +8,6 @@ const Header = () => {
             <div className="container-fluid ">
                 <ul className='list-unstyled d-flex gap-3'>
                     <li className='list-unstyled'><Link className='navbar-brand' to="/">BoolFlix</Link></li>
-                    <li className='list-unstyled'><Link className='navbar-brand' to="/films/id">Films</Link></li>
                 </ul>
 
 
