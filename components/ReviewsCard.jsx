@@ -5,7 +5,7 @@ const ReviewsCard = ({ review }) => {
 
     return (
         <div className="col-12">
-            <div className="card p-3">
+            <div className="card bg-secondary p-3 text-white">
                 <p>{text}</p>
                 <p>{vote}</p>
                 <p>{name}</p>

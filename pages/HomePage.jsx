@@ -19,11 +19,10 @@ const HomePage = () => {
 
     return (
         <>
-            <h1 className='text-primary'>BoolFlix</h1>
             <h2>
-                <i>The nerdest film community</i>
+                <i style={{ color: '#e50914', fontWeight: 'bold', fontSize: "1.8rem" }}>The nerdest film community</i>
             </h2>
-            <div className="row gy-4">
+            <div className="row gy-4 my-2">
                 {films && films.map((film) => {
                     return <FilmCard film={film} key={`film-${film.id}`} />
                 })}
