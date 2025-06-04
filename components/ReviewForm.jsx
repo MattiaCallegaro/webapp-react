@@ -19,7 +19,7 @@ const ReviewForm = ({ movie_id, reloadReviews }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        axios.post(`http://127.0.0.1:3000/api/films/${id}/review`, formData, { headers: { "Content-Type": "application/json" } }).then(() => {
+        axios.post(`http://127.0.0.1:3000/api/films/${movie_id}/review`, formData, { headers: { "Content-Type": "application/json" } }).then(() => {
             setFormData(initialData);
             reloadReviews();
         })
